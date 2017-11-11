@@ -44,9 +44,13 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "dev": "yarn start",
+    "start": "webpack-dashboard -- node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "lint": "standard --parser babel-eslint --verbose | snazzy",
+    "lint:fix": "standard --fix",
+    "lint:watch": "gulp"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -89,5 +93,10 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "standard": "^10.0.3",
+    "standard-loader": "^6.0.1",
+    "webpack-dashboard": "^1.0.2"
   }
 }
