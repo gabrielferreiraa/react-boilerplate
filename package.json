@@ -45,7 +45,7 @@
   },
   "scripts": {
     "dev": "yarn start",
-    "start": "webpack-dashboard -- node scripts/start.js",
+    "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "lint": "standard --parser babel-eslint --verbose | snazzy",
@@ -96,7 +96,6 @@
   },
   "devDependencies": {
     "standard": "^10.0.3",
-    "standard-loader": "^6.0.1",
-    "webpack-dashboard": "^1.0.2"
+    "standard-loader": "^6.0.1"
   }
 }

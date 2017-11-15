@@ -1,0 +1,7 @@
+.menu {
+    width: 240px;
+    position: absolute;
+    top: 0;
+    min-height: 100%;
+    left: -30px;
+}
