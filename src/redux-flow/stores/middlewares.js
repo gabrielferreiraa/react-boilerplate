@@ -12,4 +12,4 @@ const middlewares = [
   logger
 ]
 
-export { middlewares }
+export default middlewares

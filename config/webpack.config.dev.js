@@ -39,7 +39,11 @@ module.exports = {
     alias: {
       'react-native': 'react-native-web',
       'containers': paths.appContainer,
-      'components': paths.appComponents
+      'components': paths.appComponents,
+      'stores': paths.appStores,
+      'reduxFlow': paths.appRedux,
+      'reducers': paths.appReducers,
+      'src': paths.appSrc
     },
     plugins: [
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])
