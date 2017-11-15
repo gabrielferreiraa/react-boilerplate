@@ -50,7 +50,8 @@
     "test": "node scripts/test.js --env=jsdom",
     "lint": "standard --parser babel-eslint --verbose | snazzy",
     "lint:fix": "standard --fix",
-    "lint:watch": "gulp"
+    "lint:watch": "gulp",
+    "upg": "yarn upgrade-interactive"
   },
   "jest": {
     "collectCoverageFrom": [
