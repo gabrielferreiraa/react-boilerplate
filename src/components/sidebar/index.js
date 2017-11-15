@@ -22,12 +22,12 @@ class Sidebar extends PureComponent {
     const { open, toggle } = this.props
 
     const style = {
+      height: 'calc(100vh)',
       marginLeft: !open ? 0 : '-35px'
     }
 
     return (
       <div style={{ width: 240 }}>
-        <button onClick={toggle}>Collapse</button>
         <Menu
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}
