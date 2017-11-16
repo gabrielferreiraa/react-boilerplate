@@ -1,8 +1,6 @@
-'use strict'
-
 import React, { PureComponent } from 'react'
-import './css/App.css'
 import Sidebar from 'components/sidebar'
+import 'antd/dist/antd.css'
 
 class App extends PureComponent {
   render () {
