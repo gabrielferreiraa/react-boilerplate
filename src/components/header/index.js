@@ -42,8 +42,7 @@ const Tab = styled.ul`
 
 const TabItem = styled.li`
     border-right: 1px solid rgba(0, 0, 0, .1);
-    border-left: 1px solid rgba(0, 0, 0, .1);
-    min-width: 30px;
+    min-width: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,7 +51,10 @@ const TabItem = styled.li`
 
     :hover {
         background-color: rgba(0, 0, 0, .2);
+        color: ${colors.tertiary};
         cursor: pointer;
+        font-size: 1.5em;
+        transition: font-size 150ms ease-in-out;
     }
 `
 
@@ -64,10 +66,16 @@ class Header extends PureComponent {
           <Name>{project.name}</Name>
           <Tab>
             <TabItem>
-              <Icon type='setting' />
+              <Icon type='bars' />
             </TabItem>
             <TabItem>
-              <Icon type='user' />
+              <Icon type='pie-chart' />
+            </TabItem>
+            <TabItem>
+              <Icon type='cloud' />
+            </TabItem>
+            <TabItem>
+              <Icon type='bell' />
             </TabItem>
           </Tab>
         </ProductIdentifier>

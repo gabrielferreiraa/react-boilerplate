@@ -1,7 +1,7 @@
 const colors = {
   primary: '#108EE9',
   secondary: '#404040',
-  tertiary: '#ff8e16'
+  tertiary: '#2ECC71'
 }
 
 const widths = {
