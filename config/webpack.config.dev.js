@@ -43,7 +43,8 @@ module.exports = {
       'stores': paths.appStores,
       'reduxFlow': paths.appRedux,
       'reducers': paths.appReducers,
-      'src': paths.appSrc
+      'src': paths.appSrc,
+      'utils': paths.appUtils
     },
     plugins: [
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])

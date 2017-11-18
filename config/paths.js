@@ -43,6 +43,7 @@ module.exports = {
   appRedux: resolveApp('src/redux-flow'),
   appStores: resolveApp('src/redux-flow/stores'),
   appReducers: resolveApp('src/redux-flow/reducers'),
+  appUtils: resolveApp('src/utils'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveApp('src/setupTests.js'),
   appNodeModules: resolveApp('node_modules'),
