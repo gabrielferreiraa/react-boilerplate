@@ -72,14 +72,16 @@ const Link = styled.a`
     color: rgba(0, 0, 0, .3);
 `
 
+const collapsed = `calc(${widths.sidebar}px + 10px)`;
 const ToggleMenu = styled.a`
     text-decoration: none;
     color: #FFF;
     position: absolute;
-    left: calc(${widths.sidebar}px + 10px);
+    left: ${props => props.open ? collapsed : '75px'};
     top: 50%;
     margin-top: -10px;
     font-size: 1.4em;
+    transition: left 150ms ease;
 
     :hover {
       color: #FFF;
@@ -129,7 +131,7 @@ class Header extends PureComponent {
             </TabItem>
           </Tab>
         </ProductIdentifier>
-        <ToggleMenu onClick={toggle}>
+        <ToggleMenu onClick={toggle} open={open}>
           <Icon type={open ? 'menu-fold' : 'menu-unfold'} />
         </ToggleMenu>
       </StyledHeader>
