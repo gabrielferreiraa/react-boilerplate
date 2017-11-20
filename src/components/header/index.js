@@ -5,6 +5,10 @@ import styled from 'styled-components'
 import { Icon } from 'antd'
 import { widths, colors, project } from 'utils/globals'
 
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { toggle } from 'reducers/sidebar/action-creators'
+
 const StyledHeader = styled.nav`
     height: 60px;
     position: relative;
@@ -12,14 +16,15 @@ const StyledHeader = styled.nav`
 `
 
 const ProductIdentifier = styled.div`
-    width: ${widths.sidebar}px;
+    width: ${props => props.open ? widths.sidebar + 'px' : '64px'};
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     left: 0;
     height: calc(100% + 30px);
-    background-color: ${colors.tertiary}
+    background-color: ${colors.tertiary};
+    transition: width 150ms ease;
 `
 
 const Name = styled.span`
@@ -35,7 +40,7 @@ const Tab = styled.ul`
     position: absolute;
     height: 30px;
     bottom: 0;
-    background-color: ${colors.tertiary},
+    background-color: ${colors.tertiary};
     width: 100%;
     display: flex;
 `
@@ -56,32 +61,82 @@ const TabItem = styled.li`
         font-size: 1.5em;
         transition: font-size 150ms ease-in-out;
     }
+
+    :hover a {
+        color: ${colors.tertiary};
+    }
 `
+
+const Link = styled.a`
+    text-decoration: none;
+    color: rgba(0, 0, 0, .3);
+`
+
+const ToggleMenu = styled.a`
+    text-decoration: none;
+    color: #FFF;
+    position: absolute;
+    left: calc(${widths.sidebar}px + 10px);
+    top: 50%;
+    margin-top: -10px;
+    font-size: 1.4em;
+
+    :hover {
+      color: #FFF;
+    }
+`
+
+const collapsedName = name => {
+  let projectName =  ''
+
+  project.name.split(' ').map(value => (
+    projectName += value.substring(0, 1)
+  ))
+
+  return projectName
+}
 
 class Header extends PureComponent {
   render () {
+    const { toggle, open } = this.props
+
     return (
       <StyledHeader>
-        <ProductIdentifier>
-          <Name>{project.name}</Name>
+        <ProductIdentifier open={open}>
+          <Name>
+            {!open ? collapsedName(project.name) : project.name}
+          </Name>
           <Tab>
             <TabItem>
-              <Icon type='bars' />
+              <Link href='#menu'>
+                <Icon type='bars' />
+              </Link>
             </TabItem>
             <TabItem>
-              <Icon type='pie-chart' />
+              <Link href='#dashboard'>
+                <Icon type='pie-chart' />
+              </Link>
             </TabItem>
             <TabItem>
-              <Icon type='cloud' />
+              <Link href='#cloud'>
+                <Icon type='cloud' />
+              </Link>
             </TabItem>
             <TabItem>
-              <Icon type='bell' />
+              <Link href='#notify'>
+                <Icon type='bell' />
+              </Link>
             </TabItem>
           </Tab>
         </ProductIdentifier>
+        <ToggleMenu onClick={toggle}>
+          <Icon type={open ? 'menu-fold' : 'menu-unfold'} />
+        </ToggleMenu>
       </StyledHeader>
     )
   }
 }
 
-export default Header
+const mapStateToProps = state => ({ open: state.sidebar.open })
+const mapDispatchToProps = dispatch => bindActionCreators({ toggle }, dispatch)
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

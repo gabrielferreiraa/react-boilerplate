@@ -59,7 +59,6 @@ class Sidebar extends PureComponent {
         }
       ]
     }
-
     return (
       <SidebarWrapper>
         <Sidebar

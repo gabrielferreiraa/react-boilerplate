@@ -8,7 +8,7 @@ const tree = menu => {
   const TreeIcon = () => (
     <span>
       <Icon type={menu.icon} />
-      {menu.text}
+      <span>{menu.text}</span>
     </span>
   )
 
