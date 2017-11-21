@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { widths } from 'utils/globals'
 
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 const StyledMain = styled.main`
     transform: ${props => props.open ? 'translateX(' + widths.sidebar + 'px)' : 'translateX(70px)'};
@@ -11,11 +12,11 @@ const StyledMain = styled.main`
     will-change: transform;
 `
 
-const Main = ({ children, ...props }) => (
-  <StyledMain open={props.open}>
+const Main = ({ children, open }) => (
+  <StyledMain open={open}>
     {children}
   </StyledMain>
-  )
+)
 
 const mapStateToProps = state => ({ open: state.sidebar.open })
-export default connect(mapStateToProps, null)(Main)
+export default withRouter(connect(mapStateToProps)(Main))
