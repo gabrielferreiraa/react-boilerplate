@@ -2,9 +2,9 @@
 
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
-import { Icon } from 'antd'
+import { Icon, Tooltip } from 'antd'
 import { widths, colors, project } from 'utils/globals'
-
+import Tabs from './tabs'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { toggle } from 'reducers/sidebar/action-creators'
@@ -35,51 +35,10 @@ const Name = styled.span`
     font-weight: bold;
 `
 
-const Tab = styled.ul`
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    height: 30px;
-    bottom: 0;
-    background-color: ${colors.tertiary};
-    width: 100%;
-    display: flex;
-    visibility: ${props => props.open ? 'visible' : 'hidden'};
-    z-index: 1;
-`
-
-const TabItem = styled.li`
-    border-right: 1px solid rgba(0, 0, 0, .1);
-    min-width: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(0, 0, 0, .3);
-    background-color: rgba(0, 0, 0, .1);
-
-    :hover {
-        background-color: rgba(0, 0, 0, .2);
-        color: ${colors.tertiary};
-        cursor: pointer;
-        font-size: 1.5em;
-        transition: font-size 300ms ease-in-out;
-        will-change: font-size;
-    }
-
-    :hover a {
-        color: ${colors.tertiary};
-    }
-`
-
-const Link = styled.a`
-    text-decoration: none;
-    color: rgba(0, 0, 0, .3);
-`
-
 const collapsed = `calc(${widths.sidebar}px + 10px)`
 const ToggleMenu = styled.a`
     text-decoration: none;
-    color: #FFF;
+    color: rgba(255, 255, 255, 0.67);
     position: absolute;
     left: ${props => props.open ? collapsed : '75px'};
     top: 50%;
@@ -87,6 +46,39 @@ const ToggleMenu = styled.a`
     font-size: 1.4em;
     transition: left 300ms ease;
     will-change: left;
+
+    :hover {
+      color: #FFF;
+    }
+`
+
+const Actions = styled.ul`
+    position: absolute;
+    right: 0;
+    height: 100%;
+    display: flex;
+`
+
+const Action = styled.li`
+    min-width: 60px;
+    height: 100%;
+    font-size: 1.4em;
+    background-color: ${props => props.logout ? colors.tertiary : 'transparent'};
+
+    :hover {
+      transition: font-weight 150ms ease;
+      font-weight: bold;
+    }
+`
+const LinkAction = styled.a`
+    color: rgba(255, 255, 255, 0.67);
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid rgba(0, 0, 0, .1);
 
     :hover {
       color: #FFF;
@@ -113,32 +105,35 @@ class Header extends PureComponent {
           <Name open={open}>
             {!open ? collapsedName(project.name) : project.name}
           </Name>
-          <Tab open={open}>
-            <TabItem>
-              <Link href='#menu'>
-                <Icon type='bars' />
-              </Link>
-            </TabItem>
-            <TabItem>
-              <Link href='#dashboard'>
-                <Icon type='pie-chart' />
-              </Link>
-            </TabItem>
-            <TabItem>
-              <Link href='#cloud'>
-                <Icon type='cloud' />
-              </Link>
-            </TabItem>
-            <TabItem>
-              <Link href='#notify'>
-                <Icon type='bell' />
-              </Link>
-            </TabItem>
-          </Tab>
+          <Tabs open={open} />
         </ProductIdentifier>
         <ToggleMenu onClick={toggle} open={open}>
           <Icon type={open ? 'menu-fold' : 'menu-unfold'} />
         </ToggleMenu>
+        <Actions>
+          <Action>
+            <LinkAction href=''>
+              <Icon type='logout' />
+            </LinkAction>
+          </Action>
+          <Action>
+            <LinkAction href=''>
+              <Icon type='logout' />
+            </LinkAction>
+          </Action>
+          <Action>
+            <LinkAction href=''>
+              <Icon type='logout' />
+            </LinkAction>
+          </Action>
+          <Action logout>
+            <Tooltip placement='bottom' title='Sair'>
+              <LinkAction href=''>
+                <Icon type='logout' />
+              </LinkAction>
+            </Tooltip>
+          </Action>
+        </Actions>
       </StyledHeader>
     )
   }
