@@ -22,13 +22,14 @@ const ProductIdentifier = styled.div`
     justify-content: center;
     position: absolute;
     left: 0;
-    height: calc(100% + 30px);
+    height: ${props => props.open ? 'calc(100% + 30px)' : '100%'};
     background-color: ${colors.tertiary};
     transition: width 150ms ease;
+    will-change: width;
 `
 
 const Name = styled.span`
-    transform: translateY(-15px);
+    transform: ${props => props.open ? 'translateY(-15px)' : 'none'};
     color: #FFF;
     font-size: 1.3em;
     font-weight: bold;
@@ -43,6 +44,7 @@ const Tab = styled.ul`
     background-color: ${colors.tertiary};
     width: 100%;
     display: flex;
+    visibility: ${props => props.open ? 'visible' : 'hidden'};
 `
 
 const TabItem = styled.li`
@@ -59,7 +61,8 @@ const TabItem = styled.li`
         color: ${colors.tertiary};
         cursor: pointer;
         font-size: 1.5em;
-        transition: font-size 150ms ease-in-out;
+        transition: font-size 300ms ease-in-out;
+        will-change: font-size;
     }
 
     :hover a {
@@ -72,7 +75,7 @@ const Link = styled.a`
     color: rgba(0, 0, 0, .3);
 `
 
-const collapsed = `calc(${widths.sidebar}px + 10px)`;
+const collapsed = `calc(${widths.sidebar}px + 10px)`
 const ToggleMenu = styled.a`
     text-decoration: none;
     color: #FFF;
@@ -81,7 +84,8 @@ const ToggleMenu = styled.a`
     top: 50%;
     margin-top: -10px;
     font-size: 1.4em;
-    transition: left 150ms ease;
+    transition: left 300ms ease;
+    will-change: left;
 
     :hover {
       color: #FFF;
@@ -89,7 +93,7 @@ const ToggleMenu = styled.a`
 `
 
 const collapsedName = name => {
-  let projectName =  ''
+  let projectName = ''
 
   project.name.split(' ').map(value => (
     projectName += value.substring(0, 1)
@@ -105,10 +109,10 @@ class Header extends PureComponent {
     return (
       <StyledHeader>
         <ProductIdentifier open={open}>
-          <Name>
+          <Name open={open}>
             {!open ? collapsedName(project.name) : project.name}
           </Name>
-          <Tab>
+          <Tab open={open}>
             <TabItem>
               <Link href='#menu'>
                 <Icon type='bars' />
