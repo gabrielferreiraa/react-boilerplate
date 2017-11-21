@@ -45,6 +45,7 @@ const Tab = styled.ul`
     width: 100%;
     display: flex;
     visibility: ${props => props.open ? 'visible' : 'hidden'};
+    z-index: 1;
 `
 
 const TabItem = styled.li`
