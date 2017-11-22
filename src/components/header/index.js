@@ -122,9 +122,11 @@ class Header extends PureComponent {
             </LinkAction>
           </Action>
           <Action>
-            <LinkAction href=''>
-              <Icon type='logout' />
-            </LinkAction>
+            <Tooltip placement='bottom' title='Ajustes Gerais'>
+              <LinkAction href=''>
+                <Icon type='bars' />
+              </LinkAction>
+            </Tooltip>
           </Action>
           <Action logout>
             <Tooltip placement='bottom' title='Sair'>
