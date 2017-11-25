@@ -1,9 +1,15 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { injectGlobal } from 'styled-components'
 import { widths } from 'utils/globals'
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+
+injectGlobal`
+  body {
+    overflow-x: hidden;
+  }
+`
 
 const StyledMain = styled.main`
     background-color: #E9F0F5;

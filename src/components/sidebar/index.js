@@ -7,7 +7,7 @@ import { widths } from 'utils/globals'
 
 class Sidebar extends PureComponent {
   render () {
-    const { open } = this.props
+    const { open, theme, mode } = this.props
 
     const data = {
       menus: [
@@ -50,8 +50,8 @@ class Sidebar extends PureComponent {
     return (
       <div style={{ width: widths.sidebar, position: 'absolute' }}>
         <Menu
-          mode='inline'
-          theme='dark'
+          mode={mode}
+          theme={theme}
           inlineCollapsed={!open}
           style={{
             marginTop: open ? '30px' : '0',
@@ -65,5 +65,9 @@ class Sidebar extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({ open: state.sidebar.open })
+const mapStateToProps = ({ sidebar }) => ({
+  open: sidebar.open,
+  theme: sidebar.theme,
+  mode: sidebar.mode
+})
 export default connect(mapStateToProps, null)(Sidebar)

@@ -7,7 +7,8 @@ import { widths, colors, project } from 'utils/globals'
 import Tabs from './tabs'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { toggle } from 'reducers/sidebar/action-creators'
+import { toggle as toggleSidebar } from 'reducers/sidebar/action-creators'
+import { toggle as toggleToolbar } from 'reducers/toolbar/action-creators'
 
 const StyledHeader = styled.nav`
     height: 60px;
@@ -97,7 +98,7 @@ const collapsedName = name => {
 
 class Header extends PureComponent {
   render () {
-    const { toggle, open } = this.props
+    const { toggleSidebar, toggleToolbar, open } = this.props
 
     return (
       <StyledHeader>
@@ -107,7 +108,7 @@ class Header extends PureComponent {
           </Name>
           <Tabs open={open} />
         </ProductIdentifier>
-        <ToggleMenu onClick={toggle} open={open}>
+        <ToggleMenu onClick={toggleSidebar} open={open}>
           <Icon type={open ? 'menu-fold' : 'menu-unfold'} />
         </ToggleMenu>
         <Actions>
@@ -123,7 +124,7 @@ class Header extends PureComponent {
           </Action>
           <Action>
             <Tooltip placement='bottom' title='Ajustes Gerais'>
-              <LinkAction onClick={() => {}}>
+              <LinkAction onClick={toggleToolbar}>
                 <Icon type='bars' />
               </LinkAction>
             </Tooltip>
@@ -142,5 +143,8 @@ class Header extends PureComponent {
 }
 
 const mapStateToProps = state => ({ open: state.sidebar.open })
-const mapDispatchToProps = dispatch => bindActionCreators({ toggle }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({
+  toggleSidebar,
+  toggleToolbar
+}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
