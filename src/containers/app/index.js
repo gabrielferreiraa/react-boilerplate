@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import Sidebar from 'components/sidebar'
+import Toolbar from 'components/toolbar'
 import Header from 'components/header'
 import Main from 'src/main'
 import { Switch, Route } from 'react-router-dom'
@@ -19,6 +20,7 @@ class App extends PureComponent {
       <div>
         <Header />
         <Sidebar />
+        <Toolbar />
         <Main>
           <Switch>
             <Route exact path='/' component={Dashboard} />

@@ -63,7 +63,7 @@ const Action = styled.li`
     min-width: 60px;
     height: 100%;
     font-size: 1.4em;
-    background-color: ${props => props.logout ? colors.tertiary : 'transparent'};
+    background-color: ${props => props.logout ? colors.danger : 'transparent'};
 
     :hover {
       transition: font-weight 150ms ease;
@@ -123,7 +123,7 @@ class Header extends PureComponent {
           </Action>
           <Action>
             <Tooltip placement='bottom' title='Ajustes Gerais'>
-              <LinkAction href=''>
+              <LinkAction onClick={() => {}}>
                 <Icon type='bars' />
               </LinkAction>
             </Tooltip>
