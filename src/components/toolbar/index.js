@@ -22,6 +22,7 @@ const StyledToolbar = styled.nav`
     transform: ${props => props.open ? 'none' : 'translateX(240px)'};
     opacity: ${props => props.open ? '1' : '0'};
     transition: transform 150ms ease;
+    will-change: transform;
 `
 
 const ToolbarTitle = styled.h2`
