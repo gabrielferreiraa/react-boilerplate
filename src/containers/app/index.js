@@ -3,6 +3,7 @@ import Sidebar from 'components/sidebar'
 import Toolbar from 'components/toolbar'
 import Header from 'components/header'
 import Main from 'src/main'
+import Table from 'components/table'
 import { Switch, Route } from 'react-router-dom'
 import 'antd/dist/antd.css'
 
@@ -11,7 +12,7 @@ const Dashboard = () => (
 )
 
 const Participants = () => (
-  <h1>Participantes</h1>
+  <Table />
 )
 
 class App extends PureComponent {
