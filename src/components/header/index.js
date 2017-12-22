@@ -86,15 +86,7 @@ const LinkAction = styled.a`
     }
 `
 
-const collapsedName = name => {
-  let projectName = ''
-
-  project.name.split(' ').map(value => (
-    projectName += value.substring(0, 1)
-  ))
-
-  return projectName
-}
+const collapsedName = name => name.split(' ').reduce((acc, word) => `${acc}${word[0]}`, '')
 
 class Header extends PureComponent {
   render () {
